@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace esport.Models
+namespace esport.Business.Entites
 {
-    internal class StatsModel
+    internal class Player
     {
     }
 }
