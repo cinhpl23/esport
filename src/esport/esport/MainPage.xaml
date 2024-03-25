@@ -9,4 +9,9 @@
                 Clicked="OnTeamsViewButtonClicked" />
     </StackLayout>
     
+    <StackLayout>
+        <Button Text="Aller vers PlayersView"
+                Clicked="OnPlayersViewButtonClicked" />
+    </StackLayout>
+
 </ContentPage>
