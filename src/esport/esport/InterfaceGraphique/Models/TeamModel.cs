@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace esport.InterfaceGraphique.Models
 {
-    internal class TeamModel
-    {
+    public class Team
+    { 
+        public int Id { get; set; }
+        public required string Name { get; set; }
+        public int ListPlayer { get; set; }
+        public int StatGame { get; set; }
     }
+
 }

@@ -1,36 +1,28 @@
 ﻿using esport.Business.Entites;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace esport.Business.Services
 {
     internal class TeamService
     {
-        private Dictionary<int, Team> _teams = new Dictionary<int, Team>();
+        private readonly List<Team> _teams = new List<Team>();
 
-        public void AddTeam(int id, string name)
+        public void AddTeam(string name)
         {
-            Team team = new()
+            int id = _teams.Count + 1;
+            Team team = new Team
             {
                 Id = id,
                 Name = name
             };
-            _teams.Add(id, team);
+            _teams.Add(team);
         }
 
-        public Team GetTeam(int id) 
-        { 
-            if (_teams.ContainsKey(id))
-            {
-                return _teams[id];
-            }
-            else
-            {
-                return null;
-            }
+        public List<Team> GetTeams()
+        {
+            return _teams;
         }
+
+
     }
 }
