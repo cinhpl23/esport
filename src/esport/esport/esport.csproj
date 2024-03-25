@@ -66,9 +66,7 @@
 	  <Folder Include="Business\Interfaces\" />
 	  <Folder Include="Business\Services\" />
 	  <Folder Include="DataAcessLayer\Repository\" />
-	  <Folder Include="Entities\" />
 	  <Folder Include="InterfaceGraphique\Models\" />
-	  <Folder Include="Services\" />
 	</ItemGroup>
 
 	<ItemGroup>
