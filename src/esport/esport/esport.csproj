@@ -63,24 +63,28 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Folder Include="Business\Interfaces\" />
+	  <Folder Include="Business\Services\" />
+	  <Folder Include="DataAcessLayer\Repository\" />
 	  <Folder Include="Entities\" />
+	  <Folder Include="InterfaceGraphique\Models\" />
 	  <Folder Include="Services\" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Compile Update="Views\StatsView.xaml.cs">
+	  <Compile Update="InterfaceGraphique\Views\StatsView.xaml.cs">
 	    <DependentUpon>StatsView.xaml</DependentUpon>
 	  </Compile>
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="Views\StatsView.xaml">
+	  <MauiXaml Update="InterfaceGraphique\Views\StatsView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\RankingView.xaml">
+	  <MauiXaml Update="InterfaceGraphique\Views\RankingView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\PlayersView.xaml">
+	  <MauiXaml Update="InterfaceGraphique\Views\PlayersView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>

@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace esport.Models
+namespace esport.InterfaceGraphique.ViewModels
 {
-    internal class RankingModel
+    internal class StatsViewModel
     {
     }
 }
