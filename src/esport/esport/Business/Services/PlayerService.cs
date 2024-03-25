@@ -18,5 +18,20 @@ namespace esport.Business.Services
             };
             _players.Add(player.Id, player);
         }
+
+        public Player GetPlayer(int id)
+        {
+            return _players[id];
+        }
+
+        public Dictionary<int, Player> GetAllPlayers()
+        {
+            return _players;
+        }
+
+        public void RemovePlayer(Player player)
+        {
+            _players.Remove(player.Id);
+        }
     }
 }
