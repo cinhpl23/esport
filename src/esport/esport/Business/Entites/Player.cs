@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace esport.Business.Entites
+﻿namespace esport.Business.Entites
 {
-    internal class Player
+    public class Player
     {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string Pseudo {  get; set; }
+        public int IdTeam { get; set; }
+        public int MatchWin { get; set; }
     }
 }
