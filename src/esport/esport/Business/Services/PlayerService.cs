@@ -4,7 +4,7 @@ namespace esport.Business.Services
 {
     public class PlayerService
     {
-        private Dictionary<int, Player> _players = new Dictionary<int, Player>();
+        private readonly List<Player> _players = new List<Player>();
 
         public void AddPlayer(string name, string pseudo, int idTeam)
         {
@@ -16,7 +16,7 @@ namespace esport.Business.Services
                 IdTeam = idTeam,
                 MatchWin = 0
             };
-            _players.Add(player.Id, player);
+            _players.Add(player);
         }
 
         public Player GetPlayer(int id)
@@ -24,14 +24,9 @@ namespace esport.Business.Services
             return _players[id];
         }
 
-        public Dictionary<int, Player> GetAllPlayers()
+        public List<Player> GetAllPlayers()
         {
             return _players;
-        }
-
-        public void RemovePlayer(Player player)
-        {
-            _players.Remove(player.Id);
         }
     }
 }

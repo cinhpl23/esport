@@ -17,5 +17,11 @@ namespace esport
         {
             await Navigation.PushAsync(new PlayersView());
         }
+
+        private async void OnPlayerTeamViewButtonClicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new PlayerTeamView());
+        }
+        
     }
 }

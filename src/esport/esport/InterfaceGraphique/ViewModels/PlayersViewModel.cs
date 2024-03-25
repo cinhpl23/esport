@@ -1,6 +1,5 @@
-﻿using AVFoundation;
+﻿using esport.Business.Entites;
 using esport.Business.Services;
-using esport.InterfaceGraphique.Models;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows.Input;
@@ -12,9 +11,8 @@ namespace esport.InterfaceGraphique.ViewModels
         private string _nameEntry;
         private string _pseudoEntry;
         private string _teamEntry;
-        private PlayerModel _selectedPlayer;
-
-        public event PropertyChangedEventHandler PropertyChanged;
+        private readonly PlayerService _playerService;
+        private readonly TeamService _teamService;
 
         public string NameEntry
         {
@@ -55,33 +53,51 @@ namespace esport.InterfaceGraphique.ViewModels
             }
         }
 
-        public ObservableCollection<PlayerModel> Players { get; set; }
-
-        public PlayerModel SelectedPlayer
+        public PlayersViewModel()
         {
-            get => _selectedPlayer;
+            _playerService = new PlayerService();
+            Players = new ObservableCollection<Player>(_playerService.GetAllPlayers());
+            AddPlayerCommand = new Command(AddPlayer);
+        }
+
+        private ObservableCollection<Player> _Players;
+        public ObservableCollection<Player> Players
+        {
+            get { return _Players; }
             set
             {
-                if (_selectedPlayer != value)
-                {
-                    _selectedPlayer = value;
-                    OnPropertyChanged(nameof(SelectedPlayer));
-                }
+                _Players = value;
+                OnPropertyChanged(nameof(Players));
             }
         }
 
-        public ICommand AddPlayerCommand { get; private set; }
-        public PlayerService playerService = new PlayerService();
+        public ICommand AddPlayerCommand { get; }
 
-        public MainViewModel()
+        private void AddPlayer()
         {
-            Players = new ObservableCollection<PlayerModel>();
+            if (!string.IsNullOrWhiteSpace(_nameEntry) && !string.IsNullOrWhiteSpace(_pseudoEntry) && !string.IsNullOrWhiteSpace(_teamEntry))
+            {
 
-            int tmp = 1;
+                var tmp = 1;
 
-            AddPlayerCommand = new Command(PlayerService.AddPlayer(_nameEntry, _pseudoEntry, 1));
+                _playerService.AddPlayer(_nameEntry, _pseudoEntry, tmp);
+                Players.Add(new Player { Name = NameEntry, Pseudo = PseudoEntry, IdTeam = tmp, MatchWin = 0 });
+                NameEntry = string.Empty;
+            }
         }
 
+        //private void OnPickerSelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    List<Business.Entites.Team> Teams = _teamService.GetTeams();
+        //    foreach (var team in Teams)
+        //    {
+        //        myPicker.Items.Add(team.Name);
+        //    }
+
+        //    var selectedTeamName = myPicker.SelectedItem as string;
+        //}
+
+        public event PropertyChangedEventHandler PropertyChanged;
 
         protected virtual void OnPropertyChanged(string propertyName)
         {

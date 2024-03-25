@@ -13,6 +13,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
@@ -29,7 +30,6 @@
         <Entry
             Grid.Row="0"
             Grid.Column="1"
-            BackgroundColor="WhiteSmoke"
             Margin="5"
             VerticalTextAlignment="Center"
             Text="{Binding NameEntry}"/>
@@ -44,7 +44,6 @@
         <Entry 
             Grid.Row="1" 
             Grid.Column="1"            
-            BackgroundColor="WhiteSmoke"
             Margin="5"
             VerticalTextAlignment="Center"
             Text="{Binding PseudoEntry}"/>
@@ -59,10 +58,13 @@
         <Entry 
             Grid.Row="2" 
             Grid.Column="1"            
-            BackgroundColor="WhiteSmoke"
             Margin="5"
             VerticalTextAlignment="Center"
             Text="{Binding TeamEntry}"/>
+
+        <!--<Picker x:Name="myPicker"
+        Title="Choisissez une équipe"
+        SelectedIndexChanged="OnPickerSelectedIndexChanged" />-->
 
         <Button
             Text="Ajouter"
@@ -70,8 +72,39 @@
             Grid.Column="0"
             CornerRadius="5"
             BackgroundColor="BlueViolet"
-            TextColor="White"
             Margin="5"
             Command="{Binding AddPlayerCommand}"/>
+
+        <ListView ItemsSource="{Binding Players}" 
+                  Grid.Row="4"
+                  Grid.Column="0"
+                  VerticalOptions="FillAndExpand">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid Padding="10">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+
+                            <Label Grid.Row="0"
+                                   Grid.Column="0"
+                                   Text="{Binding Name}"/>
+                            <Label Grid.Row="1"
+                                   Grid.Column="0"
+                                   Text="{Binding Pseudo}"/>
+                            <Label Grid.Row="2"
+                                   Grid.Column="0"
+                                   Text="{Binding IdTeam}"/>
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </Grid>
 </ContentPage>

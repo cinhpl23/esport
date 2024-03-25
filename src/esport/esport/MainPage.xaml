@@ -7,11 +7,10 @@
     <StackLayout>
         <Button Text="Aller vers les équipes"
                 Clicked="OnTeamsViewButtonClicked" />
-    </StackLayout>
-    
-    <StackLayout>
-        <Button Text="Aller vers PlayersView"
+        <Button Text="Aller vers les joueurs"
                 Clicked="OnPlayersViewButtonClicked" />
+        <Button Text="Créez une équipe et ses joueurs"
+                Clicked="OnPlayerTeamViewButtonClicked" />
     </StackLayout>
 
 </ContentPage>
