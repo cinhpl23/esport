@@ -57,6 +57,21 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <AndroidResource Remove="Entities\**" />
+	  <AndroidResource Remove="Services\**" />
+	  <Compile Remove="Entities\**" />
+	  <Compile Remove="Services\**" />
+	  <EmbeddedResource Remove="Entities\**" />
+	  <EmbeddedResource Remove="Services\**" />
+	  <MauiCss Remove="Entities\**" />
+	  <MauiCss Remove="Services\**" />
+	  <MauiXaml Remove="Entities\**" />
+	  <MauiXaml Remove="Services\**" />
+	  <None Remove="Entities\**" />
+	  <None Remove="Services\**" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />
@@ -64,12 +79,13 @@
 
 	<ItemGroup>
 	  <Folder Include="Business\Interfaces\" />
-	  <Folder Include="Business\Services\" />
 	  <Folder Include="DataAcessLayer\Repository\" />
-	  <Folder Include="InterfaceGraphique\Models\" />
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="InterfaceGraphique\Views\TeamView.xaml.cs">
+	    <DependentUpon>TeamView.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="InterfaceGraphique\Views\StatsView.xaml.cs">
 	    <DependentUpon>StatsView.xaml</DependentUpon>
 	  </Compile>
@@ -79,7 +95,7 @@
 	  <MauiXaml Update="InterfaceGraphique\Views\StatsView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="InterfaceGraphique\Views\RankingView.xaml">
+	  <MauiXaml Update="InterfaceGraphique\Views\TeamView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="InterfaceGraphique\Views\PlayersView.xaml">
