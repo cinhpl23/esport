@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace esport.Business.Entites
+namespace esport.InterfaceGraphique.Models
 {
-    internal class Match
+    internal class GameModel
     {
     }
 }
