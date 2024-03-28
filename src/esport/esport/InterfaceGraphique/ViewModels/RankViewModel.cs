@@ -1,10 +1,9 @@
-﻿using System.Collections.ObjectModel;
+﻿using esport.Business.Entites;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using esport.Business.Entites;
-using esport.Business.Services;
-using esport.InterfaceGraphique.Models;
 
+// A faire car non fonctionnel
 namespace esport.InterfaceGraphique.ViewModels
 {
     public class RankViewModel : INotifyPropertyChanged

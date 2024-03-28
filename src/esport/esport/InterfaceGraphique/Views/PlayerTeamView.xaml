@@ -35,8 +35,8 @@
 
                             <!-- Boutons Modifier et Supprimer -->
                             <StackLayout Orientation="Horizontal" VerticalOptions="EndAndExpand">
-                                <Button Text="Modifier" Command="{Binding ModifierPlayer}" BackgroundColor="#4CAF50" TextColor="White" FontSize="14" CornerRadius="5" Margin="5,0,5,0" WidthRequest="100" HeightRequest="40" />
-                                <Button Text="Supprimer" Command="{Binding SupprimerPlayer}" BackgroundColor="#F44336" TextColor="White" FontSize="14" CornerRadius="5" Margin="5,0,5,0" WidthRequest="100" HeightRequest="40" />
+                                <Button Text="Modifier" Command="{Binding UpdatePlayer}" BackgroundColor="#4CAF50" TextColor="White" FontSize="14" CornerRadius="5" Margin="5,0,5,0" WidthRequest="100" HeightRequest="40" />
+                                <Button Text="Supprimer" Command="{Binding DeletePlayer}" BackgroundColor="#F44336" TextColor="White" FontSize="14" CornerRadius="5" Margin="5,0,5,0" WidthRequest="100" HeightRequest="40" />
                             </StackLayout>
                         </StackLayout>
                     </ViewCell>

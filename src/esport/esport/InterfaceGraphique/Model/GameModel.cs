@@ -1,10 +1,4 @@
-﻿using esport.InterfaceGraphique.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.Json.Serialization;
-using System.Threading.Tasks;
+﻿using System.Text.Json.Serialization;
 
 namespace GameFinder.Model
 {
@@ -19,7 +13,7 @@ namespace GameFinder.Model
         public int Stats { get; set; }
     }
 
-[JsonSerializable(typeof(List<GameModel>))]
+    [JsonSerializable(typeof(List<GameModel>))]
     internal sealed partial class GameContext : JsonSerializerContext
     {
 

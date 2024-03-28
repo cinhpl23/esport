@@ -5,12 +5,16 @@
             x:Class="esport.Views.GameView"
                  Title="Statistiques"
                  x:Name="page"> 
+    
+    <!-- Bind les parties/joueurs/équipes/scores/statistiques -->
     <ContentPage.BindingContext>
         <local:GameViewModel />
     </ContentPage.BindingContext>
 
+    
     <StackLayout>
         <StackLayout Padding="10">
+            <!-- Formulaire d'ajout -->
             <DatePicker Date="{Binding Date}" />
             <Entry Placeholder="Nom de la partie" Text="{Binding Round}" />
             <Picker Title="Sélectionner une équipe" 
@@ -36,7 +40,7 @@
             <Entry Placeholder="Stats" Text="{Binding Stats}" />        
             <Button Text="Ajouter la partie" Command="{Binding AddGameCommand}" />
         </StackLayout>
-
+        <!-- Affichage des parties -->
         <CollectionView ItemsSource="{Binding Games}">
             <CollectionView.ItemTemplate>
                 <DataTemplate>

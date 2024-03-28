@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace esport.InterfaceGraphique.Models
+﻿namespace esport.InterfaceGraphique.Models
 {
     public class TeamModel
-    { 
+    {
         public int Id { get; set; }
         public required string Name { get; set; }
         public int ListPlayer { get; set; }

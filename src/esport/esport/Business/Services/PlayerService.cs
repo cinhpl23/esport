@@ -1,5 +1,4 @@
 ﻿using esport.Business.Entites;
-using System.Text.Json;
 
 namespace esport.Business.Services
 {
@@ -22,12 +21,7 @@ namespace esport.Business.Services
         {
             return _players.FindAll(player => player.IdTeam == teamId);
         }
-
-        public List<Player> GetPlayers()
-        {
-            return _players;
-        }
-
+        // Ajouter les méthodes d'édition et supression d'un joueur
         private void InitializePlayers()
         {
             _players.Add(new Player { Id = 1, Name = "Alex Chen", Pseudo = "ShadowFury", IdTeam = 1, MatchWin = 10 });

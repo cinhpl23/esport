@@ -1,8 +1,8 @@
+using esport.Business.Entites;
+using esport.Business.Services;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows.Input;
-using esport.Business.Entites;
-using esport.Business.Services;
 
 namespace esport.InterfaceGraphique.ViewModels
 {
@@ -18,6 +18,7 @@ namespace esport.InterfaceGraphique.ViewModels
         private readonly PlayerService _playerService = new PlayerService();
         private readonly TeamService _teamService = new TeamService();
         private int _idTeam;
+        private Player _selectedPlayer;
 
         private string? _newPlayerName;
         public string NewPlayerName
@@ -61,6 +62,20 @@ namespace esport.InterfaceGraphique.ViewModels
             }
         }
 
+        private bool _isAddPlayerFormVisible;
+        public bool IsAddPlayerFormVisible
+        {
+            get { return _isAddPlayerFormVisible; }
+            set
+            {
+                if (_isAddPlayerFormVisible != value)
+                {
+                    _isAddPlayerFormVisible = value;
+                    OnPropertyChanged(nameof(IsAddPlayerFormVisible));
+                }
+            }
+        }
+
         public ObservableCollection<Player> Players { get; private set; }
         private ObservableCollection<Team> _teams;
         public ObservableCollection<Team> Teams
@@ -73,14 +88,11 @@ namespace esport.InterfaceGraphique.ViewModels
             }
         }
 
-
-        private Player _selectedPlayer;
-
         public ICommand AddPlayer { get; private set; }
         public ICommand AddNewPlayer { get; private set; }
         public ICommand AddTeam { get; private set; }
-        public ICommand ModifierPlayer { get; private set; }
-        public ICommand SupprimerPlayer { get; private set; }
+        public ICommand UpdatePlayer { get; private set; }
+        public ICommand DeletePlayer { get; private set; }
 
         public PlayerTeamViewModel()
         {
@@ -91,8 +103,8 @@ namespace esport.InterfaceGraphique.ViewModels
             AddPlayer = new Command(ExecuteAddPlayer);
             AddNewPlayer = new Command(ExecuteAddNewPlayer);
             AddTeam = new Command<string>(ExecuteAddTeam);
-            ModifierPlayer = new Command(ExecuteModifierPlayer);
-            SupprimerPlayer = new Command(ExecuteSupprimerPlayer);
+            UpdatePlayer = new Command(ExecuteUpdatePlayer);
+            DeletePlayer = new Command(ExecuteDeletePlayer);
         }
 
         private void LoadTeamsAndPlayers()
@@ -124,6 +136,7 @@ namespace esport.InterfaceGraphique.ViewModels
             _playerService.AddPlayer(player);
 
             // Mettre à jour la liste des joueurs
+            // Bug constaté à corriger, ajout de deux équipes impossible
             Players.Clear();
             foreach (var p in _playerService.GetPlayersByTeamId(_idTeam))
             {
@@ -143,20 +156,35 @@ namespace esport.InterfaceGraphique.ViewModels
             IsAddPlayerFormVisible = isVisible;
         }
 
-        private bool _isAddPlayerFormVisible;
-        public bool IsAddPlayerFormVisible
+        private void ExecuteUpdatePlayer()
         {
-            get { return _isAddPlayerFormVisible; }
-            set
-            {
-                if (_isAddPlayerFormVisible != value)
-                {
-                    _isAddPlayerFormVisible = value;
-                    OnPropertyChanged(nameof(IsAddPlayerFormVisible));
-                }
-            }
+            // Si aucun joueur n'est sélectionné, ne rien faire
+            if (_selectedPlayer == null)
+                return;
+
+            // Afficher le formulaire pour modifier un joueur
+            SetAddPlayerFormVisibility(true);
+            NewPlayerName = _selectedPlayer.Name;
+            NewPlayerPseudo = _selectedPlayer.Pseudo;
         }
 
+        private void ExecuteDeletePlayer()
+        {
+            // Si aucun joueur n'est sélectionné, ne rien faire
+            if (_selectedPlayer == null)
+                return;
+
+            // Supprimer le joueur
+            //_playerService.DeletePlayer(_selectedPlayer);
+
+            // Mettre à jour la liste des joueurs
+            Players.Remove(_selectedPlayer);
+
+            // Réinitialiser la sélection
+            _selectedPlayer = null;
+        }
+
+        // Ajoute l'équipe au joueur
         private void ExecuteAddTeam(string teamName)
         {
             List<Player> teamPlayers = _playerService.GetPlayersByTeamId(_idTeam);
@@ -170,34 +198,6 @@ namespace esport.InterfaceGraphique.ViewModels
             OnPropertyChanged(nameof(Players));
             TeamName = string.Empty;
             OnPropertyChanged(nameof(TeamName));
-        }
-
-        private void ExecuteModifierPlayer()
-        {
-            // Si aucun joueur n'est sélectionné, ne rien faire
-            if (_selectedPlayer == null)
-                return;
-
-            // Afficher le formulaire pour modifier un joueur
-            SetAddPlayerFormVisibility(true);
-            NewPlayerName = _selectedPlayer.Name;
-            NewPlayerPseudo = _selectedPlayer.Pseudo;
-        }
-
-        private void ExecuteSupprimerPlayer()
-        {
-            // Si aucun joueur n'est sélectionné, ne rien faire
-            if (_selectedPlayer == null)
-                return;
-
-            // Supprimer le joueur
-            _playerService.DeletePlayer(_selectedPlayer);
-
-            // Mettre à jour la liste des joueurs
-            Players.Remove(_selectedPlayer);
-
-            // Réinitialiser la sélection
-            _selectedPlayer = null;
         }
     }
 

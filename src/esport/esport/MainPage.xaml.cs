@@ -9,6 +9,7 @@ namespace esport
             InitializeComponent();
         }
 
+        // Boutons de navigation
         private async void OnPlayerTeamViewButtonClicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new PlayerTeamView());
