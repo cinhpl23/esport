@@ -35,6 +35,5 @@ namespace esport.Business.Services
             _players.Add(new Player { Id = 3, Name = "Liam Johnson", Pseudo = "CyberWraith", IdTeam = 2, MatchWin = 12 });
             _players.Add(new Player { Id = 4, Name = "Sarah Lee", Pseudo = "PixelPulse", IdTeam = 2, MatchWin = 6 });
         }
-
     }
 }
