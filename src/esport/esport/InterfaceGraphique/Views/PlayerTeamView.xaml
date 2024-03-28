@@ -24,10 +24,26 @@
         <ListView ItemsSource="{Binding Players}">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <TextCell Text="{Binding Name}" Detail="{Binding Pseudo}" />
+                    <ViewCell>
+                        <StackLayout Padding="10">
+                            <!-- Nom et pseudo du joueur -->
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="{Binding Name}" FontSize="16" VerticalOptions="CenterAndExpand" />
+                                <BoxView WidthRequest="10" BackgroundColor="Transparent"/>
+                                <Label Text="{Binding Pseudo}" FontSize="16" VerticalOptions="CenterAndExpand" />
+                            </StackLayout>
+
+                            <!-- Boutons Modifier et Supprimer -->
+                            <StackLayout Orientation="Horizontal" VerticalOptions="EndAndExpand">
+                                <Button Text="Modifier" Command="{Binding ModifierPlayer}" BackgroundColor="#4CAF50" TextColor="White" FontSize="14" CornerRadius="5" Margin="5,0,5,0" WidthRequest="100" HeightRequest="40" />
+                                <Button Text="Supprimer" Command="{Binding SupprimerPlayer}" BackgroundColor="#F44336" TextColor="White" FontSize="14" CornerRadius="5" Margin="5,0,5,0" WidthRequest="100" HeightRequest="40" />
+                            </StackLayout>
+                        </StackLayout>
+                    </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+
         <Button Text="Ajouter une équipe" 
              Command="{Binding AddTeam}" 
              CommandParameter="{Binding Text, Source={x:Reference TeamName}}" />

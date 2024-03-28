@@ -74,9 +74,13 @@ namespace esport.InterfaceGraphique.ViewModels
         }
 
 
+        private Player _selectedPlayer;
+
         public ICommand AddPlayer { get; private set; }
         public ICommand AddNewPlayer { get; private set; }
         public ICommand AddTeam { get; private set; }
+        public ICommand ModifierPlayer { get; private set; }
+        public ICommand SupprimerPlayer { get; private set; }
 
         public PlayerTeamViewModel()
         {
@@ -87,6 +91,8 @@ namespace esport.InterfaceGraphique.ViewModels
             AddPlayer = new Command(ExecuteAddPlayer);
             AddNewPlayer = new Command(ExecuteAddNewPlayer);
             AddTeam = new Command<string>(ExecuteAddTeam);
+            ModifierPlayer = new Command(ExecuteModifierPlayer);
+            SupprimerPlayer = new Command(ExecuteSupprimerPlayer);
         }
 
         private void LoadTeamsAndPlayers()
@@ -164,6 +170,34 @@ namespace esport.InterfaceGraphique.ViewModels
             OnPropertyChanged(nameof(Players));
             TeamName = string.Empty;
             OnPropertyChanged(nameof(TeamName));
+        }
+
+        private void ExecuteModifierPlayer()
+        {
+            // Si aucun joueur n'est sélectionné, ne rien faire
+            if (_selectedPlayer == null)
+                return;
+
+            // Afficher le formulaire pour modifier un joueur
+            SetAddPlayerFormVisibility(true);
+            NewPlayerName = _selectedPlayer.Name;
+            NewPlayerPseudo = _selectedPlayer.Pseudo;
+        }
+
+        private void ExecuteSupprimerPlayer()
+        {
+            // Si aucun joueur n'est sélectionné, ne rien faire
+            if (_selectedPlayer == null)
+                return;
+
+            // Supprimer le joueur
+            _playerService.DeletePlayer(_selectedPlayer);
+
+            // Mettre à jour la liste des joueurs
+            Players.Remove(_selectedPlayer);
+
+            // Réinitialiser la sélection
+            _selectedPlayer = null;
         }
     }
 
