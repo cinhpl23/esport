@@ -1,11 +1,10 @@
-<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:esport.InterfaceGraphique.ViewModels"
-             xmlns:model="clr-namespace:GameFinder.Model"
-             x:Class="esport.Views.GameView"
-             Title="Statistiques"
-             x:Name="page">
+             xmlns:model="clr-namespace:esport.InterfaceGraphique.Models"
+            x:Class="esport.Views.GameView"
+                 Title="Statistiques"
+                 x:Name="page"> 
     <ContentPage.BindingContext>
         <local:GameViewModel />
     </ContentPage.BindingContext>
@@ -13,40 +12,42 @@
     <StackLayout>
         <StackLayout Padding="10">
             <DatePicker Date="{Binding Date}" />
-            <Entry Placeholder="Round" Text="{Binding Round}" />
-            <Entry Placeholder="Team" Text="{Binding Team}" />
-            <Entry Placeholder="Player" Text="{Binding Player}" />
+            <Entry Placeholder="Nom de la partie" Text="{Binding Round}" />
+            <Picker Title="Sélectionner une équipe" 
+                SelectedItem="{Binding SelectedTeam, Mode=TwoWay}">
+                <Picker.ItemsSource>
+                    <x:Array Type="{x:Type model:TeamModel}">
+                        <model:TeamModel Name="PhoenixFury" />
+                        <model:TeamModel Name="WarpZone" />
+                    </x:Array>
+                </Picker.ItemsSource>
+            </Picker>
+
+            <Picker Title="Sélectionner un joueur" 
+             SelectedItem="{Binding SelectedPlayer, Mode=TwoWay}">
+                <Picker.ItemsSource>
+                    <x:Array Type="{x:Type model:PlayerModel}">
+                        <model:PlayerModel Pseudo="ShadowFury" />
+                        <model:PlayerModel Pseudo="NovaStrike" />
+                    </x:Array>
+                </Picker.ItemsSource>
+            </Picker>
             <Entry Placeholder="Score" Text="{Binding Score}" />
-            <Entry Placeholder="Stats" Text="{Binding Stats}" />
+            <Entry Placeholder="Stats" Text="{Binding Stats}" />        
             <Button Text="Ajouter la partie" Command="{Binding AddGameCommand}" />
         </StackLayout>
 
-        <CollectionView>
-            <CollectionView.ItemsSource>
-                <x:Array Type="{x:Type model:GameModel}">
-                    <model:GameModel
-                        Round="Nom du jeu"
-                        Team="Équipe 1 vs Équipe 2"
-                        Player="Test"
-                        Score="10" 
-                        Stats="50" />
-                    <model:GameModel
-                        Round="Autre jeu"
-                        Team="Joueur 1 vs Joueur 2"
-                        Player="Test"
-                        Score="5" 
-                        Stats="10" />
-                </x:Array>
-            </CollectionView.ItemsSource>
+        <CollectionView ItemsSource="{Binding Games}">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <StackLayout Padding="10">
+                        <Label Text="Nom de la partie :" />
                         <Label Text="{Binding Round}" FontSize="Large" />
                         <Label Text="{Binding Date, StringFormat='Date: {0:dd/MM/yyyy}'}" />
                         <Label Text="{Binding Team}" />
                         <Label Text="{Binding Player}" />
                         <Label Text="{Binding Score, StringFormat='Score: {0}'}" />
-                        <Label Text="{Binding Stats, StringFormat='Score: {0}'}" />
+                        <Label Text="{Binding Stats, StringFormat='Stats: {0}'}" />
                     </StackLayout>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
