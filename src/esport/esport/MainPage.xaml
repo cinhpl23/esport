@@ -7,12 +7,11 @@
     <StackLayout>
         <Button Text="Créez une équipe et ses joueurs"
                 Clicked="OnPlayerTeamViewButtonClicked" />
+
         <Button Text="Parties"
                 Clicked="OnGameViewButtonClicked" />
 
-
-
-
+        <Button Text="Classement"
+                Clicked="OnRankViewButtonClicked" />
     </StackLayout>
-
 </ContentPage>
