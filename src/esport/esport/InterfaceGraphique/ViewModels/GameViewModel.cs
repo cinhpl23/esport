@@ -1,9 +1,9 @@
-﻿using System.Collections.ObjectModel;
+﻿using esport.InterfaceGraphique.Models;
+using GameFinder.Model;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
-using esport.InterfaceGraphique.Models;
-using GameFinder.Model;
 
 namespace esport.InterfaceGraphique.ViewModels
 {
@@ -24,7 +24,7 @@ namespace esport.InterfaceGraphique.ViewModels
 
         public int ID { get; set; }
         public DateTime Date { get; set; }
-        public string Round {  get; set; }
+        public string Round { get; set; }
         public string Team { get; set; }
         public string Player { get; set; }
         public int Score { get; set; }
@@ -42,27 +42,11 @@ namespace esport.InterfaceGraphique.ViewModels
         {
             Games = new ObservableCollection<GameModel>
             {
-                new GameModel { ID = 1, Round="Taureau", Team="WarpZone", Player="ShadowFury", Score=1, Stats=10 },
-                new GameModel { ID = 2, Round = "Taureau", Team = "PhoenixFury", Player = "NovaStrike", Score= 0, Stats = 8 }
+                new() { ID = 1, Round="Taureau", Team="WarpZone", Player="ShadowFury", Score=1, Stats=10 },
+                new() { ID = 2, Round = "Taureau", Team = "PhoenixFury", Player = "NovaStrike", Score= 0, Stats = 8 }
             };
 
             AddGameCommand = new Command(AddGame);
-        }
-
-        private void AddGame()
-        {
-            var newGame = new GameModel
-            {
-                ID = ID,
-                Date = Date,
-                Round = Round,
-                Team = SelectedTeam?.Name,
-                Player = SelectedPlayer?.Pseudo,
-                Score = Score,
-                Stats = Stats
-            };
-
-            Games.Add(newGame);
         }
 
         // Afficher les équipes et les joueurs dans la sélection de l'ajout d'une partie
@@ -92,6 +76,21 @@ namespace esport.InterfaceGraphique.ViewModels
                     OnPropertyChanged();
                 }
             }
+        }
+        private void AddGame()
+        {
+            var newGame = new GameModel
+            {
+                ID = ID,
+                Date = Date,
+                Round = Round,
+                Team = SelectedTeam?.Name,
+                Player = SelectedPlayer?.Pseudo,
+                Score = Score,
+                Stats = Stats
+            };
+
+            Games.Add(newGame);
         }
     }
 }
