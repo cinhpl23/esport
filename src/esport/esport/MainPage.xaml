@@ -8,7 +8,7 @@
         <Button Text="Créez une équipe et ses joueurs"
                 Clicked="OnPlayerTeamViewButtonClicked" />
         <Button Text="Parties"
-                Clicked="OnRankViewButtonClicked" />
+                Clicked="OnGameViewButtonClicked" />
 
 
 

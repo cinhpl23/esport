@@ -57,16 +57,28 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <AndroidResource Remove="Business\Interfaces\**" />
+	  <AndroidResource Remove="DataAcessLayer\**" />
 	  <AndroidResource Remove="Entities\**" />
 	  <AndroidResource Remove="Services\**" />
+	  <Compile Remove="Business\Interfaces\**" />
+	  <Compile Remove="DataAcessLayer\**" />
 	  <Compile Remove="Entities\**" />
 	  <Compile Remove="Services\**" />
+	  <EmbeddedResource Remove="Business\Interfaces\**" />
+	  <EmbeddedResource Remove="DataAcessLayer\**" />
 	  <EmbeddedResource Remove="Entities\**" />
 	  <EmbeddedResource Remove="Services\**" />
+	  <MauiCss Remove="Business\Interfaces\**" />
+	  <MauiCss Remove="DataAcessLayer\**" />
 	  <MauiCss Remove="Entities\**" />
 	  <MauiCss Remove="Services\**" />
+	  <MauiXaml Remove="Business\Interfaces\**" />
+	  <MauiXaml Remove="DataAcessLayer\**" />
 	  <MauiXaml Remove="Entities\**" />
 	  <MauiXaml Remove="Services\**" />
+	  <None Remove="Business\Interfaces\**" />
+	  <None Remove="DataAcessLayer\**" />
 	  <None Remove="Entities\**" />
 	  <None Remove="Services\**" />
 	</ItemGroup>
@@ -78,13 +90,15 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="Business\Interfaces\" />
-	  <Folder Include="DataAcessLayer\Repository\" />
+	  <Folder Include="DataAccessLayer\Repository\" />
 	</ItemGroup>
 
 	<ItemGroup>
 	  <Compile Update="InterfaceGraphique\Views\PlayerTeamView.xaml.cs">
 	    <DependentUpon>PlayerTeamView.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="InterfaceGraphique\Views\GameView.xaml.cs">
+	    <DependentUpon>GameView.xaml</DependentUpon>
 	  </Compile>
 	  <Compile Update="InterfaceGraphique\Views\StatsView.xaml.cs">
 	    <DependentUpon>StatsView.xaml</DependentUpon>

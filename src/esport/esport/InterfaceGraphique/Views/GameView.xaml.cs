@@ -7,9 +7,9 @@ using esport.InterfaceGraphique.Models;
 
 namespace esport.Views
 {
-    public partial class RankView : ContentPage
+    public partial class GameView : ContentPage
     {
-        public RankView()
+        public GameView()
         {
             InitializeComponent();
         }

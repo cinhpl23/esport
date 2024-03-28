@@ -8,18 +8,18 @@ using esport.InterfaceGraphique.Models;
 
 namespace esport.InterfaceGraphique.ViewModels
 {
-    public class RankViewModel : INotifyPropertyChanged
+    public class GameViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        private ObservableCollection<Rank> _rank;
-        public ObservableCollection<Rank> Rank
+        private ObservableCollection<Game> _game;
+        public ObservableCollection<Game> Game
         {
-            get => _rank;
+            get => _game;
             set
             {
-                _rank = value;
-                OnPropertyChanged(nameof(Rank));
+                _game = value;
+                OnPropertyChanged(nameof(Game));
             }
         }
 
@@ -45,13 +45,13 @@ namespace esport.InterfaceGraphique.ViewModels
             }
         }
 
-        private string _game;
-        public string Game
+        private string _round;
+        public string Round
         {
-            get => _game;
+            get => _round;
             set
             {
-                _game = value;
+                _round = value;
                 OnPropertyChanged();
             }
         }
@@ -105,35 +105,25 @@ namespace esport.InterfaceGraphique.ViewModels
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        public ICommand AddRankCommand { get; }
+        public ICommand AddGameCommand { get; }
 
-        public RankViewModel()
+        public GameViewModel()
         {
-            AddRankCommand = new Command(AddRank);
+            AddGameCommand = new Command(AddGame);
         }
 
-        private async void AddRank()
+        private async void AddGame()
         {
-            var newRank = new Rank
+            var newGame = new Game
             {
                 ID = ID,
                 Date = Date,
-                Game = Game,
+                Round = Round,
                 Team = Team,
                 Player = Player,
                 Score = Score,
-                Stats = Stats.ToString() 
+                Stats = Stats 
             };
-
-            await new RankService().AddRank(newRank);
-
-            ID = 0;
-            Date = DateTime.Now;
-            Game = string.Empty;
-            Team = string.Empty;
-            Player = string.Empty;
-            Score = 0;
-            Stats = 0;
 
         }
     }
