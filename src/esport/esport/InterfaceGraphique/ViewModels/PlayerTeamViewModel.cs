@@ -47,7 +47,32 @@ namespace esport.InterfaceGraphique.ViewModels
             }
         }
 
+        private string? _teamName;
+        public string? TeamName
+        {
+            get { return _teamName; }
+            set
+            {
+                if (_teamName != value)
+                {
+                    _teamName = value;
+                    OnPropertyChanged(nameof(TeamName));
+                }
+            }
+        }
+
         public ObservableCollection<Player> Players { get; private set; }
+        private ObservableCollection<Team> _teams;
+        public ObservableCollection<Team> Teams
+        {
+            get { return _teams; }
+            set
+            {
+                _teams = value;
+                OnPropertyChanged(nameof(Teams));
+            }
+        }
+
 
         public ICommand AddPlayer { get; private set; }
         public ICommand AddNewPlayer { get; private set; }
@@ -57,10 +82,22 @@ namespace esport.InterfaceGraphique.ViewModels
         {
             int _idTeam = _teamService.GetTeams().Count + 1;
             Players = new ObservableCollection<Player>(_playerService.GetPlayersByTeamId(_idTeam));
+            LoadTeamsAndPlayers();
 
             AddPlayer = new Command(ExecuteAddPlayer);
             AddNewPlayer = new Command(ExecuteAddNewPlayer);
             AddTeam = new Command<string>(ExecuteAddTeam);
+        }
+
+        private void LoadTeamsAndPlayers()
+        {
+            Teams = new ObservableCollection<Team>(_teamService.GetTeams());
+
+            // Chargez les joueurs pour chaque équipe
+            foreach (var team in Teams)
+            {
+                team.ListPlayer = new List<Player>(_playerService.GetPlayersByTeamId(team.Id));
+            }
         }
 
         private void ExecuteAddPlayer()
@@ -119,6 +156,14 @@ namespace esport.InterfaceGraphique.ViewModels
             List<Player> teamPlayers = _playerService.GetPlayersByTeamId(_idTeam);
             Team team = new Team { Name = teamName, ListPlayer = teamPlayers, StatGame = 0 };
             _teamService.AddTeam(team);
+
+            LoadTeamsAndPlayers();
+
+            // Réinitialiser les champs
+            Players = null;
+            OnPropertyChanged(nameof(Players));
+            TeamName = string.Empty;
+            OnPropertyChanged(nameof(TeamName));
         }
     }
 

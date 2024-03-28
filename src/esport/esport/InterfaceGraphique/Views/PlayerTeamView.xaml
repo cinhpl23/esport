@@ -32,7 +32,29 @@
              Command="{Binding AddTeam}" 
              CommandParameter="{Binding Text, Source={x:Reference TeamName}}" />
 
-    </StackLayout>
-   
-</ContentPage>
+        <Label Text="Equipes existante : " FontSize="20" />
+        <BoxView HeightRequest="20" BackgroundColor="Transparent" />
+        <ListView ItemsSource="{Binding Teams}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout>
+                            <!-- Nom de l'équipe -->
+                            <Label Text="{Binding Name}" FontAttributes="Bold" />
 
+                            <!-- Liste des membres de l'équipe -->
+                            <ListView ItemsSource="{Binding ListPlayer}">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextCell Text="{Binding Name}" Detail="{Binding Pseudo}" />
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                            <BoxView HeightRequest="20" BackgroundColor="Transparent" />
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>   
+</ContentPage>
