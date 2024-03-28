@@ -1,0 +1,29 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:esport.InterfaceGraphique.ViewModels"
+             xmlns:model="clr-namespace:esport.Business.Entites"
+             x:Class="esport.Views.RankView"
+             Title="Classement"
+             x:Name="page">
+    <ContentPage.BindingContext>
+        <local:RankViewModel />
+    </ContentPage.BindingContext>
+
+    <StackLayout>
+        <ListView ItemsSource="{Binding Games}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout>
+                            <Label Text="{Binding Round}" />
+                            <Label Text="{Binding Team}" />
+                            <Label Text="{Binding Player}" />
+                            <Label Text="{Binding Score}" />
+                            <Label Text="{Binding Stats}" />
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
+</ContentPage>

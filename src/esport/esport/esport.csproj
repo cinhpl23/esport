@@ -94,19 +94,19 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="InterfaceGraphique\Views\RankView.xaml.cs">
+	    <DependentUpon>RankView.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="InterfaceGraphique\Views\PlayerTeamView.xaml.cs">
 	    <DependentUpon>PlayerTeamView.xaml</DependentUpon>
 	  </Compile>
 	  <Compile Update="InterfaceGraphique\Views\GameView.xaml.cs">
 	    <DependentUpon>GameView.xaml</DependentUpon>
 	  </Compile>
-	  <Compile Update="InterfaceGraphique\Views\StatsView.xaml.cs">
-	    <DependentUpon>StatsView.xaml</DependentUpon>
-	  </Compile>
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="InterfaceGraphique\Views\StatsView.xaml">
+	  <MauiXaml Update="InterfaceGraphique\Views\RankView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="InterfaceGraphique\Views\TeamView.xaml">
