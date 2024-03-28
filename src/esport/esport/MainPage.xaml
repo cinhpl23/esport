@@ -5,10 +5,6 @@
              x:Class="esport.MainPage">
 
     <StackLayout>
-        <Button Text="Aller vers les équipes"
-                Clicked="OnTeamsViewButtonClicked" />
-        <Button Text="Aller vers les joueurs"
-                Clicked="OnPlayersViewButtonClicked" />
         <Button Text="Créez une équipe et ses joueurs"
                 Clicked="OnPlayerTeamViewButtonClicked" />
     </StackLayout>
