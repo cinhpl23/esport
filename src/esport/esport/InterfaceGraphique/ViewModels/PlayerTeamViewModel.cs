@@ -1,4 +1,4 @@
-﻿using System.Collections.ObjectModel;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows.Input;
 using esport.Business.Entites;
@@ -125,4 +125,3 @@ namespace esport.InterfaceGraphique.ViewModels
             _teamService.AddTeam(teamName);
         }
     }
-}

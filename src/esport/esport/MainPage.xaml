@@ -1,12 +1,19 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:esport"
-             x:Class="esport.MainPage">
-
+             x:Class="esport.MainPage"
+             >
     <StackLayout>
         <Button Text="Créez une équipe et ses joueurs"
                 Clicked="OnPlayerTeamViewButtonClicked" />
+        <Button Text="Parties"
+                Clicked="OnRankViewButtonClicked" />
+
+             x:Class="esport.MainPage">
+
+
+
     </StackLayout>
 
 </ContentPage>

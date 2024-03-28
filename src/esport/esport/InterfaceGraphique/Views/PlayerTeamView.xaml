@@ -28,9 +28,12 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+    </StackLayout>
+</ContentPage>
         
         <Button Text="Ajouter une équipe" 
                 Command="{Binding AddTeam}" 
                 CommandParameter="{Binding Text, Source={x:Reference TeamNameEntry}}" />
     </StackLayout>
 </ContentPage>
+
