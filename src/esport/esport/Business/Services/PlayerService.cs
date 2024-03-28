@@ -1,4 +1,5 @@
 ﻿using esport.Business.Entites;
+using System.Text.Json;
 
 namespace esport.Business.Services
 {
@@ -6,16 +7,14 @@ namespace esport.Business.Services
     {
         private List<Player> _players = new List<Player>();
 
-        public void AddPlayer(string name, string pseudo, int idTeam)
+        public PlayerService()
         {
-            Player player = new Player
-            {
-                Id = _players.Count + 1,
-                Name = name,
-                Pseudo = pseudo,
-                IdTeam = idTeam,
-                MatchWin = 0
-            };
+            InitializePlayers();
+        }
+
+        public void AddPlayer(Player player)
+        {
+            player.Id = _players.Count + 1;
             _players.Add(player);
         }
 
@@ -24,9 +23,18 @@ namespace esport.Business.Services
             return _players.FindAll(player => player.IdTeam == teamId);
         }
 
-        public List<Player> GetAllPlayers()
+        public List<Player> GetPlayers()
         {
             return _players;
         }
+
+        private void InitializePlayers()
+        {
+            _players.Add(new Player { Id = 1, Name = "Alex Chen", Pseudo = "ShadowFury", IdTeam = 1, MatchWin = 10 });
+            _players.Add(new Player { Id = 2, Name = "Emily Rodriguez", Pseudo = "NovaStrike", IdTeam = 1, MatchWin = 8 });
+            _players.Add(new Player { Id = 3, Name = "Liam Johnson", Pseudo = "CyberWraith", IdTeam = 2, MatchWin = 12 });
+            _players.Add(new Player { Id = 4, Name = "Sarah Lee", Pseudo = "PixelPulse", IdTeam = 2, MatchWin = 6 });
+        }
+
     }
 }

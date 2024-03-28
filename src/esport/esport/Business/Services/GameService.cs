@@ -1,18 +1,18 @@
-﻿using esport.Business.Entities;
+﻿using esport.Business.Entites;
 
 namespace esport.Business.Services
 {
     internal class GameService
     {
-        private List<Match> games;
+        private List<Game> games;
         public GameService()
         {
-            games = new List<Match>();
+            games = new List<Game>();
         }
 
-        public void AddMatch(Match match)
+        public void AddGame(Game game)
         {
-            games.Add(match);
+            games.Add(game);
         }
     }
 

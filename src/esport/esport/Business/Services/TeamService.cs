@@ -1,21 +1,27 @@
 ﻿using esport.Business.Entites;
 using System.Collections.Generic;
+using System.Text.Json;
 
 namespace esport.Business.Services
 {
-    internal class TeamService
+    public class TeamService
     {
-        private readonly List<Team> _teams = new List<Team>();
+        private List<Team> _teams = new List<Team>();
 
-        public void AddTeam(string name)
+        public TeamService()
         {
-            int id = _teams.Count + 1;
-            Team team = new Team
-            {
-                Id = id,
-                Name = name
-            };
+            InitializeTeams();
+        }
+
+        public void AddTeam(Team team)
+        {
+            team.Id = _teams.Count + 1;
             _teams.Add(team);
+        }
+
+        public Team GetTeamById(int teamId)
+        {
+            return _teams.Find(team => team.Id == teamId)!;
         }
 
         public List<Team> GetTeams()
@@ -23,6 +29,10 @@ namespace esport.Business.Services
             return _teams;
         }
 
-
+        private void InitializeTeams()
+        {
+            _teams.Add(new Team { Id = 1, Name = "PhoenixFury", StatGame = 20 });
+            _teams.Add(new Team { Id = 2, Name = "WarpZone", StatGame = 18 });
+        }
     }
 }
