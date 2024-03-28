@@ -1,0 +1,36 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:esport.InterfaceGraphique.ViewModels"
+             x:Class="esport.Views.PlayerTeamView"
+             Title="Création d'une équipe et de ses joueurs"
+             x:Name="page">
+    <ContentPage.BindingContext>
+        <local:PlayerTeamViewModel />
+    </ContentPage.BindingContext>
+    <StackLayout>
+        <Label Text="Nom de l'équipe : " />
+        <Entry Text="{Binding TeamName}" />
+        <Button Text="Ajouter un joueur" Command="{Binding AddPlayer}" />
+
+        <!-- Placeholder pour le formulaire d'ajout de joueur -->
+        <StackLayout x:Name="AddPlayerForm" IsVisible="{Binding IsAddPlayerFormVisible}">
+            <Label Text="Ajouter un joueur" />
+            <Entry Placeholder="Nom du joueur" Text="{Binding NewPlayerName}" />
+            <Entry Placeholder="Pseudo du joueur" Text="{Binding NewPlayerPseudo}" />
+            <Button Text="Valider" Command="{Binding AddNewPlayer}" />
+        </StackLayout>
+
+        <!-- Liste des joueurs ajoutés -->
+        <ListView ItemsSource="{Binding Players}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextCell Text="{Binding Name}" Detail="{Binding Pseudo}" />
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        
+        <Button Text="Ajouter une équipe" 
+                Command="{Binding AddTeam}" 
+                CommandParameter="{Binding Text, Source={x:Reference TeamNameEntry}}" />
+    </StackLayout>
+</ContentPage>

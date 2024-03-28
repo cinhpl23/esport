@@ -9,13 +9,10 @@ namespace esport
             InitializeComponent();
         }
 
-        private async void OnTeamsViewButtonClicked(object sender, EventArgs e)
+        private async void OnPlayerTeamViewButtonClicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new TeamView());
+            await Navigation.PushAsync(new PlayerTeamView());
         }
-        private async void OnPlayersViewButtonClicked(object sender, EventArgs e)        
-        {
-            await Navigation.PushAsync(new PlayersView());
-        }
+        
     }
 }
