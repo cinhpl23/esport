@@ -9,7 +9,7 @@
     </ContentPage.BindingContext>
     <StackLayout>
         <Label Text="Nom de l'équipe : " />
-        <Entry Text="{Binding TeamName}" />
+        <Entry x:Name="TeamName" Text="{Binding TeamName}" />
         <Button Text="Ajouter un joueur" Command="{Binding AddPlayer}" />
 
         <!-- Placeholder pour le formulaire d'ajout de joueur -->
@@ -33,7 +33,7 @@
         
         <Button Text="Ajouter une équipe" 
                 Command="{Binding AddTeam}" 
-                CommandParameter="{Binding Text, Source={x:Reference TeamNameEntry}}" />
+                CommandParameter="{Binding Text, Source={x:Reference TeamName}}" />
     </StackLayout>
 </ContentPage>
 

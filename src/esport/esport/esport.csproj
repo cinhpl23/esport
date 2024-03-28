@@ -92,9 +92,6 @@
 	  <Compile Update="InterfaceGraphique\Views\PlayerTeamView.xaml.cs">
 	    <DependentUpon>PlayerTeamView.xaml</DependentUpon>
 	  </Compile>
-	  <Compile Update="InterfaceGraphique\Views\TeamView.xaml.cs">
-	    <DependentUpon>TeamView.xaml</DependentUpon>
-	  </Compile>
 	  <Compile Update="InterfaceGraphique\Views\StatsView.xaml.cs">
 	    <DependentUpon>StatsView.xaml</DependentUpon>
 	  </Compile>
@@ -107,9 +104,6 @@
 	  <MauiXaml Update="InterfaceGraphique\Views\PlayerTeamView.xaml">
 =======
 	  <MauiXaml Update="InterfaceGraphique\Views\StatsView.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="InterfaceGraphique\Views\TeamView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>
