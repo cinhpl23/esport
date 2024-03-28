@@ -8,7 +8,7 @@ namespace esport.InterfaceGraphique.ViewModels
 {
     public class PlayerTeamViewModel : INotifyPropertyChanged
     {
-        public event PropertyChangedEventHandler ?PropertyChanged;
+        public event PropertyChangedEventHandler? PropertyChanged;
 
         protected virtual void OnPropertyChanged(string propertyName)
         {
@@ -17,7 +17,7 @@ namespace esport.InterfaceGraphique.ViewModels
 
         private readonly PlayerService _playerService = new PlayerService();
         private readonly TeamService _teamService = new TeamService();
-        private int _idTeam ;
+        private int _idTeam;
 
         private string? _newPlayerName;
         public string NewPlayerName
@@ -47,7 +47,7 @@ namespace esport.InterfaceGraphique.ViewModels
             }
         }
 
-        public ObservableCollection<Player> Players {  get; private set; }
+        public ObservableCollection<Player> Players { get; private set; }
 
         public ICommand AddPlayer { get; private set; }
         public ICommand AddNewPlayer { get; private set; }
@@ -117,7 +117,9 @@ namespace esport.InterfaceGraphique.ViewModels
         private void ExecuteAddTeam(string teamName)
         {
             List<Player> teamPlayers = _playerService.GetPlayersByTeamId(_idTeam);
-            Team team = new Team { Name  = teamName, ListPlayer = teamPlayers, StatGame = 0 };
+            Team team = new Team { Name = teamName, ListPlayer = teamPlayers, StatGame = 0 };
             _teamService.AddTeam(team);
         }
     }
+
+}

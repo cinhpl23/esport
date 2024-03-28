@@ -17,7 +17,6 @@ namespace esport
         private async void OnRankViewButtonClicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new RankView());
-=======
 
         }
         
