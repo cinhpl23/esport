@@ -79,12 +79,15 @@
 
 	<ItemGroup>
 	  <Folder Include="Business\Interfaces\" />
-	  <Folder Include="DataAcessLayer\Repository\" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Compile Update="InterfaceGraphique\Views\TeamView.xaml.cs">
-	    <DependentUpon>TeamView.xaml</DependentUpon>
+	  <None Include="C:\Users\cindy\Documents\data.json" Link="data.json" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Compile Update="InterfaceGraphique\Views\PlayerTeamView.xaml.cs">
+	    <DependentUpon>PlayerTeamView.xaml</DependentUpon>
 	  </Compile>
 	  <Compile Update="InterfaceGraphique\Views\StatsView.xaml.cs">
 	    <DependentUpon>StatsView.xaml</DependentUpon>
@@ -95,10 +98,7 @@
 	  <MauiXaml Update="InterfaceGraphique\Views\StatsView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="InterfaceGraphique\Views\TeamView.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="InterfaceGraphique\Views\PlayersView.xaml">
+	  <MauiXaml Update="InterfaceGraphique\Views\PlayerTeamView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>

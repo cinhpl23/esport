@@ -1,0 +1,24 @@
+[
+  {
+    "ID": 1,
+    "Date": "2024-03-30T08:00:00Z",
+    "Game": "Nom du jeu",
+    "TeamsOrPlayers": "Équipe 1 vs Équipe 2",
+    "Score": 10,
+    "Stats": {
+      "Stat1": 20,
+      "Stat2": 30
+    }
+  },
+  {
+    "ID": 2,
+    "Date": "2024-03-31T08:00:00Z",
+    "Game": "Autre jeu",
+    "TeamsOrPlayers": "Joueur 1 vs Joueur 2",
+    "Score": 5,
+    "Stats": {
+      "Stat1": 10,
+      "Stat2": 15
+    }
+  }
+]

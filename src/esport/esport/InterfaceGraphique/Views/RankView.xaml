@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:esport.InterfaceGraphique.ViewModels"
+             xmlns:model="clr-namespace:RankFinder.Model"
+             x:Class="esport.Views.RankView"
+             Title="Statistiques"
+             x:Name="page">
+    <ContentPage.BindingContext>
+        <local:RankViewModel />
+    </ContentPage.BindingContext>
+
+    <StackLayout>
+        <StackLayout Padding="10">
+            <DatePicker Date="{Binding Date}" />
+            <Entry Placeholder="Game" Text="{Binding Game}" />
+            <Entry Placeholder="Team" Text="{Binding Team}" />
+            <Entry Placeholder="Player" Text="{Binding Player}" />
+            <Entry Placeholder="Score" Text="{Binding Score}" />
+            <Entry Placeholder="Stats" Text="{Binding Stats}" />
+            <Button Text="Add Rank" Command="{Binding AddRankCommand}" />
+        </StackLayout>
+
+        <CollectionView>
+            <CollectionView.ItemsSource>
+                <x:Array Type="{x:Type model:RankModel}">
+                    <model:RankModel
+                        Game="Nom du jeu"
+                        TeamsOrPlayers="Équipe 1 vs Équipe 2"
+                        Score="10" />
+                    <model:RankModel
+                        Game="Autre jeu"
+                        TeamsOrPlayers="Joueur 1 vs Joueur 2"
+                        Score="5" />
+                </x:Array>
+            </CollectionView.ItemsSource>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout Padding="10">
+                        <Label Text="{Binding Game}" FontSize="Large" />
+                        <Label Text="{Binding Date, StringFormat='Date: {0:dd/MM/yyyy}'}" />
+                        <Label Text="{Binding TeamsOrPlayer}" />
+                        <Label Text="{Binding Score, StringFormat='Score: {0}'}" />
+                        <Label Text="{Binding StatsString}" />
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </StackLayout>
+</ContentPage>
