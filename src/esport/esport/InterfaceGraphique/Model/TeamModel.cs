@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace esport.InterfaceGraphique.Models
 {
-    public class Team
+    public class TeamModel
     { 
         public int Id { get; set; }
         public required string Name { get; set; }

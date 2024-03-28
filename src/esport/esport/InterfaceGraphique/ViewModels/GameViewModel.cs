@@ -2,9 +2,8 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
-using esport.Business.Entites;
-using esport.Business.Services;
 using esport.InterfaceGraphique.Models;
+using GameFinder.Model;
 
 namespace esport.InterfaceGraphique.ViewModels
 {
@@ -12,120 +11,87 @@ namespace esport.InterfaceGraphique.ViewModels
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        private ObservableCollection<Game> _game;
-        public ObservableCollection<Game> Game
+        private ObservableCollection<GameModel> _games;
+        public ObservableCollection<GameModel> Games
         {
-            get => _game;
+            get => _games;
             set
             {
-                _game = value;
-                OnPropertyChanged(nameof(Game));
+                _games = value;
+                OnPropertyChanged(nameof(Games));
             }
         }
 
-        private int _id;
-        public int ID
-        {
-            get => _id;
-            set
-            {
-                _id = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private DateTime _date;
-        public DateTime Date
-        {
-            get => _date;
-            set
-            {
-                _date = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private string _round;
-        public string Round
-        {
-            get => _round;
-            set
-            {
-                _round = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private string _team;
-        public string Team
-        {
-            get => _team;
-            set
-            {
-                _team = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private string _player;
-        public string Player
-        {
-            get => _player;
-            set
-            {
-                _player = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private int _score;
-        public int Score
-        {
-            get => _score;
-            set
-            {
-                _score = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private int _stats;
-        public int Stats
-        {
-            get => _stats;
-            set
-            {
-                _stats = value;
-                OnPropertyChanged();
-            }
-        }
+        public int ID { get; set; }
+        public DateTime Date { get; set; }
+        public string Round {  get; set; }
+        public string Team { get; set; }
+        public string Player { get; set; }
+        public int Score { get; set; }
+        public int Stats { get; set; }
 
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
+        // Ajoute une partie à la liste
         public ICommand AddGameCommand { get; }
 
         public GameViewModel()
         {
+            Games = new ObservableCollection<GameModel>
+            {
+                new GameModel { ID = 1, Round="Taureau", Team="WarpZone", Player="ShadowFury", Score=1, Stats=10 },
+                new GameModel { ID = 2, Round = "Taureau", Team = "PhoenixFury", Player = "NovaStrike", Score= 0, Stats = 8 }
+            };
+
             AddGameCommand = new Command(AddGame);
         }
 
-        private async void AddGame()
+        private void AddGame()
         {
-            var newGame = new Game
+            var newGame = new GameModel
             {
                 ID = ID,
                 Date = Date,
                 Round = Round,
-                Team = Team,
-                Player = Player,
+                Team = SelectedTeam?.Name,
+                Player = SelectedPlayer?.Pseudo,
                 Score = Score,
-                Stats = Stats 
+                Stats = Stats
             };
 
+            Games.Add(newGame);
+        }
+
+        // Afficher les équipes et les joueurs dans la sélection de l'ajout d'une partie
+        private PlayerModel _selectedPlayer;
+        public PlayerModel SelectedPlayer
+        {
+            get { return _selectedPlayer; }
+            set
+            {
+                if (_selectedPlayer != value)
+                {
+                    _selectedPlayer = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        private TeamModel _selectedTeam;
+        public TeamModel SelectedTeam
+        {
+            get { return _selectedTeam; }
+            set
+            {
+                if (_selectedTeam != value)
+                {
+                    _selectedTeam = value;
+                    OnPropertyChanged();
+                }
+            }
         }
     }
-
 }
